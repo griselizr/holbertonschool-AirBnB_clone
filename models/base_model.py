@@ -1,9 +1,6 @@
 #!/user/bin/python3
 """ Create BaseModel from dictionary"""
 
-from datetime import datetime
-from uuid import uuid4
-
 
 class Basemodel:
     """ a class Basemodel
