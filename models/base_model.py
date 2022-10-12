@@ -18,14 +18,17 @@ class BaseModel:
     """
 
     def __init__(self, *args, **kwargs):
-        """ intinialize the instances """
+        """ intialize the instances """
+        convert = None
         if kwargs:
             for key, value in kwargs.items():
-                if key in ["created_at", "updated_at"]:
-                    value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
-                if key is not ["_class__"]:
-                    setattr(self, 'key', 'value')
-
+                if key != "__class__":
+                    if key in ["created_at", "updated_at"]:
+                        convert = datetime.strptime(
+                            value, '%Y-%m-%dT%H:%M:%S.%f')
+                        setattr(self, key, convert)
+                    else:
+                        setattr(self, key, value)
         else:
             self.id = str(uuid4())
             self.created_at = datetime.today()
