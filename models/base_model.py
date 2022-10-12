@@ -23,8 +23,8 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key in ["created_at", "updated_at"]:
                     value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
-                if key is not ['_class__']:
-                    setattr(self, key, value)
+                if key is not ["_class__"]:
+                    setattr(self, 'key', 'value')
 
         else:
             self.id = str(uuid4())
