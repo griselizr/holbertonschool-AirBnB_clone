@@ -2,7 +2,6 @@
 """ Create BaseModel from dictionary"""
 
 from datetime import datetime
-from models import storage
 from uuid import uuid4
 
 
@@ -25,13 +24,12 @@ class Basemodel:
                 if key in ["created_at", "updated_at"]:
                     value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
                 if key is not ['_class__']:
-                    setattr(Self, key, value)
+                    setattr(self, key, value)
 
         else:
             self.id = str(uuid4())
             self.created_at = datetime.today()
             self.updated_at = datetime.today()
-            models.storage.new(self)
 
     def __str__(self):
         """ returns a string """
@@ -42,7 +40,6 @@ class Basemodel:
         """updates the public instance attribute updated_at
         with the current datetime"""
         self.updated_at = datetime.now()
-        storage.save()
 
     def to_dict(self):
         """returns a dictionary containing all keys/values
