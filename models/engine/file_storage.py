@@ -2,7 +2,7 @@
 """ serialization-deserialization Json"""
 
 import json
-from models.base_model import BaseModel
+from os import path
 
 
 class FileStorage(object):
@@ -35,4 +35,4 @@ class FileStorage(object):
             with open(self.__file_path, mode='r', encoding='utf-8') as f:
                 jason = json.loads(f.read())
                 for k, v in jason.items():
-                    self.__objects[k] = eval(v[BaseModel])(**v)
+                    self.__objects[k] = eval(v['__class__'])(**v)
