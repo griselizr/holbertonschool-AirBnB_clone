@@ -51,9 +51,9 @@ class HBNBCommand(cmd.Cmd):
         elif len(words) == 1:
             print("** instance id missing **")
             return
-        all = storage.all()
+        all_o = storage.all()
         s = words[0] + '.' + words[1]
-        for obj_id in all.keys():
+        for obj_id in all_o.keys():
             if s == obj_id:
                 obj = all[obj_id]
                 print(obj)
@@ -64,7 +64,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, args):
         """ Prints all string representation of all instances """
         if len(args) == 0:
-            all = storage.all()
+            all_o = storage.all()
             new = []
             for obj_id in all.keys():
                 obj = all[obj_id]
@@ -73,11 +73,11 @@ class HBNBCommand(cmd.Cmd):
         elif args not in classes:
             print("** class doesn't exist **")
         elif args in classes:
-            all_objs = storage.all()
-            for obj_id in all.keys():
+            all_o = storage.all()
+            for obj_id in all_o.keys():
                 key1 = obj_id.split('.')
                 if key1[0] == args:
-                    obj = all_objs[obj_id]
+                    obj = all_o[obj_id]
                     print("{}".format(obj))
 
     def do_destroy(self, args):
@@ -92,7 +92,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(words) == 1:
             print("** instance id missing **")
             return
-        all = storage.all()
+        all_o = storage.all()
         s = words[0] + '.' + words[1]
         for key, value in all.items():
             if s in key:
