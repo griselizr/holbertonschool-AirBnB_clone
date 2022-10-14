@@ -2,6 +2,7 @@
 """ serialization-deserialization Json"""
 
 import json
+from models.user import User
 from models.base_model import BaseModel
 from os import path
 
