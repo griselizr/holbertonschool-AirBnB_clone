@@ -1,10 +1,18 @@
 #!/usr/bin/python3
 """ module cmd entry point of the command interpreter:"""
+
+from models.user import User
+from models.state import State
+from models.place import Place
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 import cmd
 from models import storage
 from models.base_model import BaseModel
 
-classes = ['BaseModel']
+
+classes = ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']
 
 
 class HBNBCommand(cmd.Cmd):
