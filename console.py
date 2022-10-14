@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """ module cmd entry point of the command interpreter:"""
 import cmd
+from models import storage
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -36,7 +38,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_show(self, args):
-        """ Prints the json file of an instance of a class name and id """
+        """ Prints the str of an instance of a class name and id """
         words = args.split(' ')
         if len(args) == 0:
             print("** class name missing **")
