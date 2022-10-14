@@ -85,21 +85,18 @@ class HBNBCommand(cmd.Cmd):
         words = args.split(' ')
         if len(args) == 0:
             print("** class name missing **")
-            return
         elif words[0] not in classes:
+            if len(words) > 1:
+                key = words[0] + "." + words[1]
+                if key in models.storage.all():
+                    models.storage.all().pop(key)
+                    models.storage.save()
+                else:
+                    print("** no instance found **")
+            else:
+                print("** instance id missing **")
+        else:
             print("** class doesn't exist **")
-            return
-        elif len(words) == 1:
-            print("** instance id missing **")
-            return
-        all = storage.all()
-        s = words[0] + '.' + words[1]
-        for key, value in all.items():
-            if s in key:
-                del all[str(s)]
-                storage.save()
-                return
-        print("** no instance found **")
 
     def do_update(self, args):
         """ Updates an instance based on the class name and id
