@@ -77,7 +77,7 @@ class HBNBCommand(cmd.Cmd):
             for obj_id in all.keys():
                 key1 = obj_id.split('.')
                 if key1[0] == args:
-                    obj = all_objs[obj_id]
+                    obj = all[obj_id]
                     print("{}".format(obj))
 
     def do_destroy(self, args):
