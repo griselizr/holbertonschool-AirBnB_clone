@@ -51,11 +51,11 @@ class HBNBCommand(cmd.Cmd):
         elif len(words) == 1:
             print("** instance id missing **")
             return
-        all = storage.all()
+        all_o = storage.all()
         s = words[0] + '.' + words[1]
-        for obj_id in all.keys():
+        for obj_id in all_o.keys():
             if s == obj_id:
-                obj = all[obj_id]
+                obj = all_o[obj_id]
                 print(obj)
                 return
         print("** no instance found **")
@@ -64,24 +64,24 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, args):
         """ Prints all string representation of all instances """
         if len(args) == 0:
-            all = storage.all()
+            all_o = storage.all()
             new = []
-            for obj_id in all.keys():
+            for obj_id in all_o.keys():
                 obj = all[obj_id]
                 new.append("{}".format(obj))
             print(new)
         elif args not in classes:
             print("** class doesn't exist **")
         elif args in classes:
-            all = storage.all()
-            for obj_id in all.keys():
-                key1 = obj_id.split('.')
-                if key1[0] == args:
-                    obj = all[obj_id]
+            all_o = storage.all()
+            for obj_id in all_o.keys():
+                keys = obj_id.split('.')
+                if keys[0] == args:
+                    obj = all_o[obj_id]
                     print("{}".format(obj))
 
     def do_destroy(self, args):
-        """ Deletes an instance based on the class name and id """
+        """ Deletes an instance based on name and id """
         words = args.split(' ')
         if len(args) == 0:
             print("** class name missing **")
@@ -115,8 +115,8 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
         s1 = words[0] + '.' + words[1]
-        all = storage.all()
-        for key, value in all.items():
+        all_o = storage.all()
+        for key, value in all_o.items():
             if s1 in key:
                 if len(words) == 2:
                     print("** attribute name missing **")
