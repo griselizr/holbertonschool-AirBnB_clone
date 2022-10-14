@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" module cmd entry point of the command interpreter:"""
 import cmd
 
 
