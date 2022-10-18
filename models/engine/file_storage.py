@@ -17,7 +17,7 @@ class FileStorage(object):
 
     """ Creates a class FileStore"""
 
-    __file_path = 'file.json'
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
@@ -41,6 +41,6 @@ class FileStorage(object):
         """deserializes the JSON file to __objects"""
         if path.exists(self.__file_path):
             with open(self.__file_path, mode='r', encoding='utf-8') as f:
-                jason = json.loads(f)
+                jason = json.loads(f.read())
                 for k, v in jason.items():
                     self.__objects[k] = eval(v['__class__'])(**v)
